@@ -1,0 +1,53 @@
+<div class="watch-list-container" [ngClass]="{'mobile':isMobile,'web':!isMobile}">
+    <div class="watch-list-holder">
+        <div class="watch-list-title">My WatchList</div>
+        <div *ngIf="showLoader" class="loader-class">
+            <mat-spinner diameter="50"></mat-spinner>
+        </div>
+        <div *ngIf="!watchListPresent && !showLoader">
+            <div class="no-watchlist-stock alert alert-warning" >
+                Currently you don't have any stock in your watchlist.
+            </div>
+        </div>
+        <div *ngIf="watchListPresent && !showLoader">
+            <div [ngClass]="{'extrapadding':i == 0}" (click)="openStock(option)" class="watch-list-div" *ngFor="let option of watchList; let i = index;" > 
+                
+            <span class="cross-icon close" (click)="watchListRemove(option)">&times;</span>
+            <div>
+                <div class="ticker-css">{{option.ticker}}</div>
+                <div>{{option.name}}</div>
+            </div>
+            
+            <div>
+                    <div *ngIf="option.latest_price && option.latest_price.data && option.latest_price.data.length!=0" [style.color]="option.change_status ? 'green':'red'" class = "top_container_right" [ngClass]="{'no-change':option.colorBlack}">
+                        <div class="latest_price_css">{{option.latest_price.data[0].last.toFixed(2)}} <br></div>
+                        <div class="change_value" *ngIf="option.change_status; else down">
+                            <!-- <ng-template #up> -->
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg" *ngIf="!option.colorBlack">
+                                    <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                                </svg>
+                                {{option.change}} ({{option.change_percent}}%)<br>
+                            <!-- </ng-template> -->                    
+                        </div>
+                        <ng-template #down>
+                            <div class="change_value">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg" *ngIf="!option.colorBlack">
+                                    <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                                </svg>
+                                {{option.change}} ({{option.change_percent}}%)<br>
+                            </div>
+                            
+                        </ng-template>
+                    </div>  
+            </div>
+            
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container text-center">
+          <span class="text-muted">“Powered by Tiingo. Developed by Dennis Mistry”.</span>
+        </div>
+    </footer>     
+</div>
+ 

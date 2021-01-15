@@ -1,0 +1,32 @@
+<!-- 
+Custom nvbar color 
+-->
+<nav class="navbar navbar-expand-sm navbar-custom navbar-dark" [ngClass]="{'mobile':isMobile,'web':!isMobile}">
+  <a href="/" class="navbar-brand">Stock Search</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCustom">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse" id="navbarCustom">
+      <ul class="navbar-nav space">
+          <li class="nav-item">
+              <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+                true}" class="nav-link">Search</a>
+          </li>
+          <li class="nav-item">
+              <a routerLink="watchlist" routerLinkActive="active" class="nav-link">Watchlist</a>
+          </li>
+          <li class="nav-item">
+              <a routerLink="portfolio" routerLinkActive="active" class="nav-link">Portfolio</a>
+          </li>
+          
+      </ul>
+      
+      <!--<span class="ml-auto navbar-text">Text</span>-->
+  </div>
+</nav>
+
+<!-- <app-search></app-search>
+<app-portfolio></app-portfolio>
+<app-watchlist></app-watchlist> -->
+
+<router-outlet></router-outlet>

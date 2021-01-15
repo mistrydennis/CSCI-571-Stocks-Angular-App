@@ -1,0 +1,356 @@
+.detail-container {
+    position: relative;
+    padding-bottom : 100px; 
+    min-height: calc(100% - 54px);
+}
+.detail-holder {
+    padding-top: 1%;
+}
+
+.top_container_right {
+    margin-left: auto;
+    /* color:lightgreen; */
+}
+
+.top_container {
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 30px;
+}
+.stock-detail-top-container{
+    width: 100%;
+}
+.stock-detail-1,.stock-detail-2,.stock-detail-3{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.stock-detail-2{
+    margin-top: 20px;
+    align-items: flex-start;
+}
+.stock-detail-3{
+    margin: 10px 0;
+}
+
+.ticker_heading {
+    font-size: 40px;
+    display: flex;
+}
+
+.star_css {
+    margin-top: -7px;
+}
+.ticker_name {
+    font-size:25px;
+    color: gray;
+}
+
+.latest_price_css {
+    font-size: 40px;
+    /* text-align: right; */
+}
+
+.change_value {
+    font-size:25px;  
+}
+
+.market_status_view {
+    width: 80%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    padding: 1% 0;
+}
+
+.market_open {
+    padding: 0 0;
+}
+
+.alert-success {
+    width: fit-content;
+    height: fit-content;
+}
+
+.alert {
+    border-radius: 0;
+}
+/* This style and top_container style is related */
+.det-mat-tab-container {  
+    margin-left: 10%;
+    margin-right:10%
+}
+
+.style_color {
+    color:green;
+}
+
+.summary_container{
+    display: flex;
+}
+
+.two-column-layout{
+    width:50%;
+    text-align: center;
+}
+
+.high-chart-summary {
+    padding-top: 40px;
+    margin-left: 50px;
+    height: 100%!important;
+    /* width:50%; */
+    /* text-align: center; */
+}
+
+.inner-layout {
+    display: flex;
+    padding-top: 40px;
+}
+
+.sum_com_desc_t{
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+.sum_start_date {
+    text-align:left;
+}
+.sum_com_desc {
+    text-align: left;
+    margin-top: 10px;
+}
+
+
+
+
+/* CSS for news tab */
+
+.card_div {
+    width: 100%;
+    height: 130px;
+    border-radius: 5px;
+    border: 1px #e8e8e8 solid;
+    background: #f1f1f1;
+    display: flex; 
+    margin-top: 20px;
+    cursor: pointer;
+    /* flex-basis: 50%; */
+}
+
+.sub_news_container {
+    flex-basis: 48%;
+    margin-left: 1%;
+    margin-right: 1%;
+    /* width: 50%;
+    flex-basis: 50%; */
+    /* flex-basis: 50%; */
+}
+.news_container_div{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+.inside_sub_right {
+    width: 49%;
+    margin-left: auto;
+}
+
+.card {
+    margin-top: 2em;
+    margin-bottom : 1em;
+}
+
+.inner_card {
+    display: flex;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.card_Image {
+    width: 100px;
+    height: 60px;
+    border-radius: 2px;
+    margin-left: 10px;
+    text-align: center;
+}
+
+.card_title {
+    padding-left: 15px;
+}
+
+.chart_container {
+    width: 500px;
+    height: 400px;
+}
+
+.high-chart-tab-container {
+    /* width: 90%; */
+    height: 500px; 
+    /* display:block; 
+    overflow: unset; */
+}
+
+.no-stock,.no-news{
+    width: 80%;
+    margin: 2% auto;
+    text-align: center;
+}
+.watch-listed{
+    width: 80%;
+    margin: 2% auto;
+    text-align: center;
+}
+.image-style{
+    border-radius: 0.25rem;
+    width: 8.125rem;
+    height: 3.75rem;
+}
+
+.loader-class{
+    justify-content: center;
+    height: calc(100% - 52px);
+    display: flex;
+    margin-top: 5%;
+}
+
+.no-change{
+    color:black !important;
+}
+.highchart-width{
+    /* width: 400px;
+    max-width:400px; */
+}
+.highchart-width .highcharts-container {
+    width: 400px !important;
+}
+
+highcharts-chart.highcharts-container {
+    margin: auto;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #ededed;
+}
+/* Modal news css */
+
+/* .news-title {
+    font-weight: 500;
+    
+}
+
+.news-body {
+    font-size: 12px;
+} */
+
+/* Mobile CSS */
+.mobile.detail-container {
+    min-height: calc(100% - 55px);
+}
+.mobile .summary_container{
+    display: block;
+}
+
+.mobile .two-column-layout {
+    width: 100%;
+    text-align: left;
+}
+
+.mobile .high-chart-summary{
+    overflow-x: auto;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.mobile .market_status_view {
+    width: 80%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    padding: 1% 0;
+    margin-top: 20px;
+}
+.mobile .stock-detail-3{
+    margin-top: 15px;
+}
+
+.mobile .buy_button {
+    margin-top: 15px;
+}
+.mobile .ticker_heading {
+    font-size: 34px;
+}
+
+.mobile .latest_price_css {
+    font-size: 34px;
+}
+.mobile .ticker_name {
+    font-size: 24px;
+    line-height: 24px;
+    width: 50%;
+}
+.mobile .stock-detail-2-sub{
+    width: 45%;
+    text-align: right;
+    line-height: 26px;
+}
+
+.mobile .change_value {
+    font-size:24px;
+}
+
+.mobile .sum_com_desc_t
+{
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+/* News tab */
+.mobile .card_Image {
+    width: 90%;
+    height: 175px;
+    margin: 5%;
+    margin-bottom: 0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.mobile .card_div {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    border: 1px #e8e8e8 solid;
+    background: #f1f1f1;
+    display: flex;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.mobile .inner_card {
+    display: block;
+    padding-bottom: 32px;
+    padding-top: 0;
+    width:100%;
+}
+
+.mobile .news_container_div {
+    display: block;
+}
+
+.mobile .card_title{
+    padding-left: 0;
+    margin: 0 5%;
+}
+
+.mobile .no-stock {
+    width: 80%;
+    margin: 10% auto;
+}

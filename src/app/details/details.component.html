@@ -1,0 +1,188 @@
+<!-- Spinner -->
+<div *ngIf="showLoader" class="loader-class">
+    <mat-spinner diameter="50"></mat-spinner>
+</div>
+<div class="detail-container" *ngIf="!showLoader" [ngClass]="{'mobile':isMobile,'web':!isMobile}">
+    <div class="detail-holder">
+        <div class="no-stock alert alert-danger" *ngIf="noValidResult">
+            No results found. Please enter valid Ticker
+        </div>
+        <div class="detail-visible-container" *ngIf="!noValidResult">
+            <div class="watch-listed alert alert-success" *ngIf="watchListObj.status" >
+                {{watchListObj.msg}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="watch-listed alert alert-danger" *ngIf="watchListRemove.status">
+                {{watchListRemove.msg}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="watch-listed alert alert-success" *ngIf="stockBoughtToast.status">
+                {{stockBoughtToast.msg}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <div class="top_container">
+            <div *ngIf="stock_result && stock_result.data.name" class="stock-detail-top-container">
+                <div class="stock-detail-1">
+                    <div class="ticker_heading">
+                            {{stock_result.data.ticker}}
+                            <div *ngIf="!isWatchListed; else csToggle" class="star_css">
+                                <span (click)="watchListToggle()" ><svg width="1em" height="0.65em" viewBox="0 0 16 16" class="bi bi-star" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="vertical-align:bottom;">
+                                    <path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                </svg></span> 
+                            </div>
+                        <ng-template #csToggle>
+                            <div class="star_css">
+                                <span (click)="watchListToggle()" ><svg width="1em" height="0.65em" viewBox="0 0 16 16" class="bi bi-star-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color:yellow;">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                </svg>
+                                </span> 
+                            </div>
+                        </ng-template>
+                    </div>
+                    <div *ngIf="latest_price && latest_price.data && latest_price.data.length!=0" [style.color]="change_status ? 'green':'red'" class = "" [ngClass]="{'no-change':colorBlack}"  class="latest_price_css">{{latest_price.data[0].last}} </div>
+                </div>
+                <div class="stock-detail-2">
+                    <div class="ticker_name">{{stock_result.data.name}}</div>
+                    <div *ngIf="latest_price && latest_price.data && latest_price.data.length!=0" [style.color]="change_status ? 'green':'red'" class = "stock-detail-2-sub" [ngClass]="{'no-change':colorBlack}" >
+                        <div class="change_value" *ngIf="change_status; else down">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg" *ngIf="!colorBlack">
+                                    <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                                </svg>
+                                {{change}} ({{change_percent}}%)
+                        </div>
+                        <ng-template #down>
+                            <div class="change_value">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg" *ngIf="!colorBlack">
+                                    <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                                </svg>
+                                {{change}} ({{change_percent}}%)
+                            </div>
+                            
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="stock-detail-3">
+                    <div class="ticker_exchangeCode">{{stock_result.data.exchangeCode}}</div>
+                    <div *ngIf="latest_price && latest_price.data && latest_price.data.length!=0" class="current_dateTimestamp" style="float:right;">{{date}}</div>
+                </div>
+                <div class="buy_button"><button type="button" class="btn btn-success" (click)="openBuyModal(modal)">Buy</button></div>
+            </div>    
+        </div>
+    
+        <!-- To determine if market is open or not..-->
+        <div class="market_status_view">
+            <div class="alert alert-success market_open" role="alert" [style.color]="market_status ? 'green':'red'" [style.backgroundColor]="market_status ? '#d4edda':'#f8d7da'">
+                <div *ngIf="market_status; else market_closed">
+                    Market is Open
+                </div>
+                <ng-template #market_closed>
+                    Market is closed on {{marketclosedDate}}
+                </ng-template>
+            </div>
+        
+        </div>
+
+        <!-- Tabs -->
+        <div class="det-mat-tab-container">
+            <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+                <mat-tab label="Summary"> 
+                    <ng-template matTabContent>
+                    <div class="summary_container">
+                            <div class="two-column-layout ">
+                                    <div class="inner-layout">
+                                        <div class="two-column-layout" *ngIf="latest_price && latest_price.data && latest_price.data.length!=0">
+                                            <div>High Price:{{latest_price.data[0].high}}</div>
+                                            <div>Low Price:{{latest_price.data[0].low}}</div>
+                                            <div>Open Price:{{latest_price.data[0].open}}</div>
+                                            <div>Prev. Close:{{latest_price.data[0].prevClose}}</div>
+                                            <div>Volume:{{latest_price.data[0].volume}}</div>
+                                        </div>
+                                        
+                                        <div class="two-column-layout" *ngIf="market_status && latest_price && latest_price.data && latest_price.data.length!=0">
+                                            <div>Mid Price:{{latest_price.data[0].mid==null?'   -':latest_price.data[0].mid}}</div>
+                                            <div>Ask Price:{{latest_price.data[0].askPrice == null? '    -': latest_price.data[0].askPrice}}</div>
+                                            <div>Ask Size:{{latest_price.data[0].askSize == null? '   -': latest_price.data[0].askSize }}</div>
+                                            <div>Bid Price:{{latest_price.data[0].bidPrice  == null? '   -': latest_price.data[0].bidPrice }}</div>
+                                            <div>Bid Size:{{latest_price.data[0].bidSize == null? '   -': latest_price.data[0].bidSize}}</div>
+                                        </div> 
+                                    </div>
+    
+                                    <div class="sum_com_desc_t" >
+                                        <strong>Company's Description</strong>
+                                    </div>
+                                    <div class="sum_start_date">
+                                        Start Date: {{startDateOfDescription}}
+                                    </div>
+                                    <div class="sum_com_desc" *ngIf="stock_result && stock_result.data.description">
+                                        {{stock_result.data.description}}
+                                    </div>
+                                
+                            </div>
+                            <div class="high-chart-summary" *ngIf = "Highcharts">
+                                    <highcharts-chart [ngClass]="{'highchart-width':isMobile}"
+                                                style="width:100%; display: block; height:400px;"
+                                                [Highcharts]="Highcharts" 
+                                                [constructorType]="'stockChart'" 
+                                                [options]="chartOptions">
+                                    </highcharts-chart >
+                            </div>
+                    </div>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab label="Top News"> 
+                    <div class="news_container_div" *ngIf="news_data && news_data.length>0; else ErrorNews">
+                        <div (click)="openNewsModal(modal,option)" class="sub_news_container" *ngFor="let option of news_data; let i = index;"> 
+                            <div class="inside_sub_left">
+                                <div class='card_div' id='news_card'>
+                                    <div class='inner_card' *ngIf="i<news_data.length">
+                                        <div id="image_card">
+                                            <img class='card_Image' src='{{news_data[i].urlToImage}}'>
+                                        </div>
+                                        <div class='card_title'>{{news_data[i].title}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ng-template ErrorNews>
+                        <div class="news_container_div">
+                            No news found for this ticker.
+                        </div>
+                    </ng-template>
+
+                </mat-tab>
+                <mat-tab label="Charts"> 
+                    <ng-template matTabContent>
+                        <div style="margin:auto;" *ngIf = "Highcharts">
+                            <highcharts-chart style="width:100%; display: block; height:50em;"
+                                [Highcharts]="Highcharts" 
+                                [constructorType]="'stockChart'" 
+                                [options]="cOptions">
+                            </highcharts-chart>
+                        </div>
+                    </ng-template>
+                </mat-tab>
+            </mat-tab-group>
+            <br>
+    
+        </div>
+    
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container text-center">
+          <span class="text-muted">“Powered by Tiingo. Developed by Dennis Mistry”.</span>
+        </div>
+    </footer>
+    
+</div>
+
+
+<app-modal-component #modal [options]="modalOptions"></app-modal-component>
+

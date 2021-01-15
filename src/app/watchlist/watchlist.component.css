@@ -1,0 +1,91 @@
+.watch-list-container{
+    position: relative;
+    padding-bottom : 100px; 
+    min-height: calc(100% - 56px);
+}
+.watch-list-holder{
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 3%;
+}
+.watch-list-title{
+    font-size: 30px;
+    font-weight: 500;
+}
+.no-watchlist-stock{
+    margin: 2% auto;
+    text-align: center;
+}
+
+.extrapadding{
+    margin-top: 3%;
+}
+
+.watch-list-div{
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    min-height: 100px;
+    align-items: center;
+    border: 1px solid #EDEDEDED;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+.cross-icon{
+    position: absolute;
+    right: 5px;
+    top: 3px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.ticker-css {
+    font-size: 25px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+.latest_price_css {
+    text-align: right;
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #ededed;
+}
+
+/* Mobile Css */
+.mobile .watch-list-title{
+    margin: 15% 0;
+}
+.mobile .loader-class{
+    display: flex;
+    justify-content: center;
+    margin: 35% 0;
+}
+.mobile.watch-list-container{
+    min-height: calc(100% - 56px);
+}
+
+.mobile .ticker-css {
+    font-size: 22px;
+}
+.mobile .latest_price_css {
+    font-size: 22px;
+}
+.no-change{
+    color:black !important;
+}
+
+.loader-class{
+    justify-content: center;
+    height: calc(100% - 52px);
+    display: flex;
+    margin-top: 5%;
+}

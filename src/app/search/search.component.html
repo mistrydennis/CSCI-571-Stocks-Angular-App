@@ -1,0 +1,33 @@
+
+<div class="search-container" [ngClass]="{'mobile':isMobile,'web':!isMobile}">
+  <div style="margin: 0 auto;text-align: center;">
+     <p class="p">STOCK SEARCH</p>
+  </div>
+  
+    <div class="input-group mb-3">
+        
+          <input [formControl]="searchField" id="search-container" type="search" class="form-control someinput" placeholder="Enter a stock name" style="border-radius: 25px;" matInput [matAutocomplete]="auto">
+
+            <mat-autocomplete #auto="matAutocomplete" class="{{isMobile ? 'mobile auto_div':'auto_div'}}">
+             
+                <mat-option class="loading" *ngIf="!auto_flag && options">
+                  <mat-spinner diameter="35"></mat-spinner>
+                </mat-option>
+                <mat-option *ngFor="let option of options" [value]="option.ticker">
+                  <span>{{option.ticker}}</span> | <small>{{option.name}}</small>
+                  <!-- <span>{{option.name}}</span> -->
+                </mat-option>
+
+            </mat-autocomplete>
+      <div class="input-group-append changes" (click)="divClick(searchField.value)">
+          <i class="fa fa-search" style="color:blueviolet;"></i>
+      </div>
+  </div>
+</div>
+
+
+<footer class="footer">
+  <div class="container text-center">
+    <span class="text-muted">“Powered by Tiingo. Developed by Dennis Mistry”.</span>
+  </div>
+</footer>

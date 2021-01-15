@@ -1,0 +1,87 @@
+<div class="portfolio-list-container" [ngClass]="{'mobile':isMobile,'web':!isMobile}">
+    <div class="portfolio-list-holder">
+            <div class="portfolio-list-title">My Portfolio</div>
+            <div *ngIf="showLoader" class="loader-class">
+                <mat-spinner diameter="50"></mat-spinner>
+            </div>
+            <div *ngIf="!profilePresent && !showLoader">
+                <div class="no-portfolio-stock alert alert-warning" >
+                    Currently you don't have any stock.
+                </div>
+            </div>
+    
+            <div *ngIf="profilePresent && !showLoader">
+                <div [ngClass]="{'extrapadding':i == 0}" class="profile-list-div" *ngFor="let option of portfolioStocks; let i = index;"> 
+                <div class="profile-header card-header">
+                    <div><span class="ticker-name-label">{{option.ticker}}</span><div class="text-muted">{{option.name}}</div><span></span></div>
+                </div>
+                <div class="portfolio-body">
+                    <div class="profile-body-left">
+                            <div class="portfolio-body-div">
+                                <div>Quantity:</div>
+                                <div>{{option.quantity}}</div>
+                            </div>
+                            <div class="portfolio-body-div">
+                                <div>Avg. Cost / Share:</div>
+                                <div>{{option.average_cost_per_share.toFixed(2)}}</div>
+                            </div>
+                            <div class="portfolio-body-div">
+                                <div>Total Cost</div>
+                                <div>{{option.totalPrice.toFixed(2)}}</div>
+                            </div>
+                    </div>
+                        <div *ngIf="option.latest_price && option.latest_price.data && option.latest_price.data.length!=0" [style.color]="option.change_status ? 'green':'red'" class = "profile-body-right" [ngClass]="{'no-change':option.colorBlack}" >
+                            <div class="portfolio-body-div">
+                                <div class="label">Change:</div>
+                                <div>
+                                    <div class="change_value" *ngIf="option.change_status; else down">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg" *ngIf="!option.colorBlack">
+                                                <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                                            </svg>
+                                            {{option.change.toFixed(2)}}<br>                    
+                                    </div>
+                                    
+                                
+                                    <ng-template #down>
+                                        <div class="change_value" >
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg" *ngIf="!option.colorBlack">
+                                                <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                                            </svg>
+                                            {{option.change.toFixed(2)}}<br>
+                                        </div>
+                                        
+                                    </ng-template>
+                                </div>    
+                            </div>
+                            <div class="portfolio-body-div">
+                                <div class="label">Current Price: </div>
+                                <div class="latest_price_css">{{option.latest_price.data[0].last}}</div>
+                            </div>
+                            <div class="portfolio-body-div">
+                                <div class="label">Market Value:</div>
+                                <div>{{option.marketValue.toFixed(2)}}</div>
+                            </div>
+                        </div>  
+                </div>
+                <div class="profile-footer card-footer">
+                        <div>
+                            <button  class="btn custom-btn-class btn-primary marginR5" (click)="buyStock(modal,i)" type="button">Buy</button>
+                            <button  class="btn custom-btn-class btn-danger" (click)="sellStock(modal,i)" type="button">Sell</button>
+                        </div>
+                </div>
+                </div>
+            </div>
+
+    </div>
+    <footer class="footer">
+        <div class="container text-center">
+        <span class="text-muted">“Powered by Tiingo. Developed by Dennis Mistry”.</span>
+        </div>
+    </footer>        
+
+    
+    
+    
+</div>
+
+<app-modal-component #modal [options]="modalOptions"></app-modal-component>

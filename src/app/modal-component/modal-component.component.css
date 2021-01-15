@@ -1,0 +1,44 @@
+.modal-title{
+    margin: 0 !important;
+}
+.modal-second-title{
+    margin:0 !important;
+}
+.close:focus{
+    border: none;
+    outline: none;
+}
+
+.news-title {
+    font-weight: 500;
+    font-size: 18px;
+    
+}
+
+.news-body {
+    font-size: 14px;
+}
+.modal-footer.custom-footer{
+    justify-content: space-between;
+}
+input:focus{
+    border: 2px solid #0086FF;
+    outline: none;
+    border-radius: 4px;
+}
+
+.social-media {
+    height: 125px;
+    border: 1px solid #EDEDED;
+    margin-top: 40px;
+    border-radius: 5px;
+    padding:20px;
+}
+.social-media-icons{
+    display: flex;
+    font-size: 2.5rem;
+    margin-top: 25px;
+}
+.social-media-icons .media-icon{
+    margin-right: 10px;;
+}
